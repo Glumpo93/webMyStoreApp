@@ -1,0 +1,20 @@
+.login-layout[b-ywg6b86fno] {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #1F1F1F;
+    margin: 0;
+}
+
+.login-content[b-ywg6b86fno] {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.SiYlogo[b-ywg6b86fno] {
+    width: 250px;
+    height: auto;
+    margin-bottom: 20px;
+}

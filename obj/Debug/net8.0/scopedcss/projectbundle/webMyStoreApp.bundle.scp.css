@@ -1,0 +1,713 @@
+/* _content/webMyStoreApp/Components/Layout/LoginLayout.razor.rz.scp.css */
+.login-layout[b-ywg6b86fno] {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #1F1F1F;
+    margin: 0;
+}
+
+.login-content[b-ywg6b86fno] {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.SiYlogo[b-ywg6b86fno] {
+    width: 250px;
+    height: auto;
+    margin-bottom: 20px;
+}
+/* _content/webMyStoreApp/Components/Layout/MainLayout.razor.rz.scp.css */
+.page[b-b5uq8cki01] {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    background-color: #1F1F1F;
+}
+
+main[b-b5uq8cki01] {
+    flex: 1;
+}
+
+.sidebar[b-b5uq8cki01] {
+    background-color: #797D7F;
+}
+
+.top-row[b-b5uq8cki01] {
+    background-color: #9C640C;
+    color: black;
+    justify-content: flex-end;
+    height: 4.0rem;
+    display: flex;
+    align-items: center;
+}
+
+@media (max-width: 640.98px) {
+    .top-row[b-b5uq8cki01] {
+        justify-content: space-between;
+    }
+
+    .top-row[b-b5uq8cki01]  a, .top-row[b-b5uq8cki01]  .btn-link {
+        margin-left: 0;
+    }
+}
+
+@media (min-width: 641px) {
+    .page[b-b5uq8cki01] {
+        flex-direction: row;
+    }
+
+    .sidebar[b-b5uq8cki01] {
+        width: 250px;
+        height: 100vh;
+        position: sticky;
+        top: 0;
+    }
+
+    .top-row[b-b5uq8cki01] {
+        position: sticky;
+        top: 0;
+        z-index: 1;
+    }
+
+    .top-row.auth[b-b5uq8cki01]  a:first-child {
+        flex: 1;
+        text-align: right;
+        width: 0;
+    }
+
+    .top-row[b-b5uq8cki01], article[b-b5uq8cki01] {
+        padding-left: 2rem !important;
+        padding-right: 1.5rem !important;
+    }
+}
+
+#blazor-error-ui[b-b5uq8cki01] {
+    background: lightyellow;
+    bottom: 0;
+    box-shadow: 0 -1px 2px rgba(0, 0, 0, 0.2);
+    display: none;
+    left: 0;
+    padding: 0.6rem 1.25rem 0.7rem 1.25rem;
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+}
+
+    #blazor-error-ui .dismiss[b-b5uq8cki01] {
+        cursor: pointer;
+        position: absolute;
+        right: 0.75rem;
+        top: 0.5rem;
+    }
+/* _content/webMyStoreApp/Components/Layout/NavMenu.razor.rz.scp.css */
+.navbar-toggler[b-4vyw3vwwml] {
+    appearance: none;
+    cursor: pointer;
+    width: 3.5rem;
+    height: 2.5rem;
+    color: white;
+    position: absolute;
+    top: 0.5rem;
+    right: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.55%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") no-repeat center/1.75rem rgba(255, 255, 255, 0.1);
+}
+
+.navbar-toggler:checked[b-4vyw3vwwml] {
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+.top-row[b-4vyw3vwwml] {
+    height: 4.0rem;
+    background-color: #9C640C;
+}
+
+.navbar-brand[b-4vyw3vwwml] {
+    font-size: 1.6rem;
+    justify-content: center;
+    color: white;
+}
+
+.bi[b-4vyw3vwwml] {
+    display: inline-block;
+    position: relative;
+    width: 1.25rem;
+    height: 1.25rem;
+    margin-right: 0.75rem;
+    top: -1px;
+    background-size: cover;
+}
+
+.bi-plus-square-fill-nav-menu[b-4vyw3vwwml] {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='black' class='bi bi-plus-square-fill' viewBox='0 0 16 16'%3E%3Cpath d='M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm6.5 4.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3a.5.5 0 0 1 1 0z'/%3E%3C/svg%3E");
+}
+
+.nav-item[b-4vyw3vwwml] {
+    font-size: 1.4rem;
+    padding-bottom: 0.5rem;
+}
+
+    .nav-item:first-of-type[b-4vyw3vwwml] {
+        padding-top: 1rem;
+    }
+
+    .nav-item:last-of-type[b-4vyw3vwwml] {
+        padding-bottom: 1rem;
+    }
+
+    .nav-item[b-4vyw3vwwml]  .nav-link {
+        color: black;
+        background: none;
+        border: none;
+        border-radius: 4px;
+        height: 3rem;
+        display: flex;
+        align-items: center;
+        line-height: 3rem;
+        width: 100%;
+    }
+
+    .nav-item[b-4vyw3vwwml]  a.active {
+        background-color: #9C640C;
+        color: black;
+        font: italic;
+    }
+
+    .nav-item[b-4vyw3vwwml]  .nav-link:hover {
+        background-color: #C0C0C0;
+        color: black;
+    }
+
+.nav-scrollable[b-4vyw3vwwml] {
+    display: none;
+}
+
+.navbar-toggler:checked ~ .nav-scrollable[b-4vyw3vwwml] {
+    display: block;
+}
+
+@media (min-width: 641px) {
+    .navbar-toggler[b-4vyw3vwwml] {
+        display: none;
+    }
+
+    .nav-scrollable[b-4vyw3vwwml] {
+        /* Never collapse the sidebar for wide screens */
+        display: block;
+
+        /* Allow sidebar to scroll for tall menus */
+        height: calc(100vh - 3.5rem);
+        overflow-y: auto;
+    }
+}
+/* _content/webMyStoreApp/Components/Pages/00Home.razor.rz.scp.css */
+h1[b-xyej1lutei] {
+    color: #9C640C;
+    font-size: 4.0rem;
+    padding: 10px;
+}
+body[b-xyej1lutei] {
+    
+}
+/* _content/webMyStoreApp/Components/Pages/01Quotes.razor.rz.scp.css */
+h1[b-k2mnb2ca90] {
+    color: #9C640C;
+    font-size: 3.0rem;
+    padding: 10px;
+}
+
+.accordion[b-k2mnb2ca90] {
+    background-color: #1F1F1F;
+    width: 50%;
+    float: left;
+    margin: 0;
+    padding: 0;
+}
+
+.accordion-item[b-k2mnb2ca90] {
+    margin: 0;
+    padding: 0;
+    background-color: #1F1F1F;
+    box-shadow: 0 10px 20px #9C640C; /* Sombra opcional para efecto visual */
+}
+
+.accordion-header[b-k2mnb2ca90] {
+    background-color: #797D7F;
+    color: white;
+    border: 1px solid #797D7F;
+    cursor: pointer;
+    margin: 0px;
+    padding: 10px; /* Añadimos un poco de padding interno */
+    border-bottom: none;
+    font-size: 2.0rem;
+    box-shadow: 0 10px 20px #9C640C; /* Sombra opcional para efecto visual */
+}
+
+.accordion-body[b-k2mnb2ca90] {
+    background-color: silver;
+    color: black;
+    margin: 0px;
+    padding: 10px;
+    border-top: none;
+}
+
+.accordion-body-quoteDetails[b-k2mnb2ca90] {
+    background-color: silver;
+    color: black;
+    margin: 0px;
+    padding: 10px;
+    border-top: none;
+}
+
+.btn-txt label[b-k2mnb2ca90] {
+    background-color: silver;
+    color: darkred;
+    margin: 10px 0;
+    border-top: none;
+    cursor: pointer;
+    font-size: 1.2rem;
+}
+
+.inp-CostumerName[b-k2mnb2ca90] {
+    width: 69%;
+    box-sizing: border-box;
+    height: 1.8rem;
+    border-radius: 4px;
+}
+
+.inp-CountryCode[b-k2mnb2ca90] {
+    width: 8%;
+    box-sizing: border-box;
+    height: 1.8rem;
+    margin-right: 0;
+    border-radius: 4px;
+}
+
+.inp-PhoneNumber[b-k2mnb2ca90] {
+    width: 25%;
+    box-sizing: border-box;
+    height: 1.8rem;
+    margin-right: 0;
+    border-radius: 4px;
+}
+
+.inp-EmailAddress[b-k2mnb2ca90] {
+    width: 34%;
+    box-sizing: border-box;
+    height: 1.8rem;
+    margin-right: 0;
+    border-radius: 4px;
+}
+
+.accordion-line select[b-k2mnb2ca90] {
+    margin-right: 0;
+    width: 1.2rem;
+    border-radius: 4px;
+    height: 1.9rem;
+    padding-bottom: 10px;
+    background-color: #797D7F;
+    color: white;
+}
+
+.accordion-body input.enable[b-k2mnb2ca90] {
+}
+
+/* Quitar márgenes y padding de todos los elementos */
+.accordion-header h2[b-k2mnb2ca90], .accordion-body label[b-k2mnb2ca90], .accordion-body input[b-k2mnb2ca90] {
+    margin: 0;
+    padding: 0;
+}
+
+.lblQuote[b-k2mnb2ca90]{
+    font-size: 2.3rem;
+}
+
+.inp-QuoteNum[b-k2mnb2ca90] {
+    align-content: center;
+    align-items: center;
+    border: none;
+    font-size: 2.0rem;
+    background-color: transparent;
+    font-size:1.5rem;
+    width: 16%;
+    margin: 10px;
+    padding: 10px;
+    text-align: center;
+}
+
+.lblDateTimeQuote[b-k2mnb2ca90]{
+    font-size: 1.0rem;
+}
+
+.inpDateTimeQuote[b-k2mnb2ca90] {
+    align-content: center;
+    align-items: center;
+    border: none;
+    background-color: transparent;
+    font-size: 1.5rem;
+    width: 55%;
+    box-sizing: border-box;
+    text-align:center;
+}
+
+.accordion-line[b-k2mnb2ca90] {
+    background-color: silver;
+    color: black;
+    margin: 10px 0;
+    border-top: none;
+    font-size: 1.5rem;
+    align-items: center;
+}
+
+.accordion-lineQuoteData[b-k2mnb2ca90] {
+    background-color: silver;
+    color: black;
+    margin: 10px 0;
+    border-top: none;
+    font-size: 1.5rem;
+    align-items: center;
+    display: flex;
+    padding: 10px;
+}
+
+.accordion-lineQuoteData[b-k2mnb2ca90] {
+    background-color: silver;
+    color: black;
+    margin: 10px 0;
+    border-top: none;
+    font-size: 1.5rem;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.accordion-detailLine[b-k2mnb2ca90] {
+    display: block; /* Asegura que cada línea esté en un bloque separado */
+    margin-bottom: 10px; /* Espacio entre cada línea */
+}
+
+.detailLineProducts[b-k2mnb2ca90] {
+    background-color: silver;
+    margin: 10px 0;
+    border-top: none;
+    font-size: 1.5rem;
+    align-items: center;
+    display: grid;
+    grid-template-columns: 2fr 14fr 6fr;
+    grid-template-rows: auto auto auto auto auto;
+    padding: 10px;
+}
+
+.lblNumQuoteLine[b-k2mnb2ca90], .lblItemQty[b-k2mnb2ca90], .lblItemCode[b-k2mnb2ca90], .lblItemName[b-k2mnb2ca90], .lblUnitPrice[b-k2mnb2ca90], .lblUnitDisc[b-k2mnb2ca90], .lblUnitSubTotal[b-k2mnb2ca90], .lblUnitTotal[b-k2mnb2ca90], .lblItemNotes[b-k2mnb2ca90], .lblProductDetails[b-k2mnb2ca90] {
+    display: block;
+}
+
+.lblNumQuoteLine[b-k2mnb2ca90] {
+    font-size: 1.3rem;
+    height: fit-content;
+    width: auto;
+    grid-column: 1;
+    grid-row: span 4;
+    align-content: center;
+    text-align: center;
+    margin: 0px;
+    padding: 0px;
+}
+
+    .lblItemQty[b-k2mnb2ca90] {
+    font-size: 1.3rem;
+    height: fit-content;
+    width: auto;
+    grid-column: 1;
+    grid-row: span 4;
+    align-content: center;
+    text-align: center;
+    margin: 0px;
+    padding: 0px;
+}
+
+.lblItemCode[b-k2mnb2ca90] {
+    font-size: 1.5rem;
+    width: auto;
+    text-align: left;
+    margin: 0;
+    grid-row: 1;
+    grid-column: 2;
+    margin: 0px;
+    padding: 0px;
+}
+
+.lblItemName[b-k2mnb2ca90] {
+    font-size: 2.0rem;
+    width: auto;
+    text-align: left;
+    margin: 0;
+    grid-row: 2;
+    grid-column: 2;
+    margin: 0px;
+    padding: 0px;
+}
+
+.lblUnitPrice[b-k2mnb2ca90] {
+    font-size: 1.6rem;
+    width: auto;
+    text-align: right;
+    margin: 0;
+    grid-row: 2;
+    grid-column: 3;
+    margin: 0px;
+    padding: 0px;
+}
+
+.lblUnitDisc[b-k2mnb2ca90] {
+    font-size: 1.6rem;
+    width: auto;
+    text-align: right;
+    grid-row: 3;
+    grid-column: 3;
+    color: indianred;
+    margin: 0px;
+    padding: 0px;
+}
+
+.lblUnitSubTotal[b-k2mnb2ca90] {
+    font-size: 1.6rem;
+    width: auto;
+    text-align: right;
+    grid-row: 4;
+    grid-column: 3;
+    margin: 0px;
+    padding: 0px;
+    border: thick;
+}
+
+.lblUnitTotal[b-k2mnb2ca90] {
+    font-size: 1.8rem;
+    width: auto;
+    text-align: right;
+    grid-row: 5;
+    grid-column: 3;
+    margin: 0px;
+    padding: 0px;
+    border: thick;
+}
+
+.lblItemNotes[b-k2mnb2ca90] {
+    grid-row: 3;
+    grid-column: 2;
+    color: #797D7F;
+    font-size: 1.0rem;
+}
+
+.lblProductDetails[b-k2mnb2ca90] {
+    grid-row: 4;
+    grid-column: 2;
+    color: #797D7F;
+    font-size: 1.0rem;
+}
+
+.subtotalDivider[b-k2mnb2ca90] {
+    grid-row: 5;
+    grid-column: 3;
+    margin-top:-1.5rem;
+}
+
+.accordion-body-endQuote[b-k2mnb2ca90] {
+    background-color: silver;
+    margin: 10px 0;
+    border-top: none;
+    font-size: 1.5rem;
+    align-items: center;
+    display: grid;
+    grid-template-columns: 4fr 1fr 1.5fr;
+    grid-template-rows: auto auto auto auto auto auto auto;
+    padding: 10px;
+}
+
+.lblTransportType[b-k2mnb2ca90] {
+    grid-row: 1/3;
+    grid-column: 1;
+    color: #9C640C;
+    font-size: 1.2rem;
+}
+
+.lblTitQuoteNotes[b-k2mnb2ca90] {
+    grid-row: 3;
+    grid-column: 1;
+}
+
+.lblQuoteNotes[b-k2mnb2ca90] {
+    grid-row: 4/8;
+    grid-column: 1;
+    align-self: start;
+    font-size: 1.2rem;
+}
+
+.lblTitQuoteSubotalTaxed[b-k2mnb2ca90] {
+    grid-row: 1;
+    grid-column: 2;
+    text-align: left;
+    padding: 0;
+}
+
+.lblQuoteSubtotalTaxed[b-k2mnb2ca90] {
+    grid-row: 1;
+    grid-column: 3;
+    text-align: right;
+    padding: 0;
+}
+
+.lblTitQuoteSubotalExcempted[b-k2mnb2ca90] {
+    grid-row: 2;
+    grid-column: 2;
+    text-align: left;
+    padding: 0;
+}
+
+.lblQuoteSubtotalExcempted[b-k2mnb2ca90] {
+    grid-row: 2;
+    grid-column: 3;
+    text-align: right;
+    padding: 0;
+}
+
+.lblTitQuoteSubotalDiscount[b-k2mnb2ca90] {
+    grid-row: 3;
+    grid-column: 2;
+    text-align: left;
+    padding: 0;
+    color: darkred;
+}
+
+.lblQuoteSubtotalDiscount[b-k2mnb2ca90] {
+    grid-row: 3;
+    grid-column: 3;
+    text-align: right;
+    padding: 0;
+    color: darkred;
+}
+
+
+.lblTitQuoteSubotalTransport[b-k2mnb2ca90] {
+    grid-row: 4;
+    grid-column: 2;
+    text-align: left;
+    padding: 0;
+}
+
+.lblQuoteSubtotalTransport[b-k2mnb2ca90] {
+    grid-row: 4;
+    grid-column: 3;
+    text-align: right;
+    padding: 0;
+}
+
+.lblTitQuoteSubotal[b-k2mnb2ca90] {
+    grid-row: 5;
+    grid-column: 2;
+    text-align: left;
+    padding: 0;
+}
+
+.lblQuoteSubtotal[b-k2mnb2ca90] {
+    grid-row: 5;
+    grid-column: 3;
+    text-align: right;
+    padding: 0;
+}
+
+.lblTitQuoteTaxes[b-k2mnb2ca90] {
+    grid-row: 6;
+    grid-column: 2;
+    text-align: left;
+    padding: 0;
+}
+
+.lblQuoteTaxes[b-k2mnb2ca90] {
+    grid-row: 6;
+    grid-column: 3;
+    text-align: right;
+    padding: 0;
+}
+
+.lblTitQuoteTotal[b-k2mnb2ca90] {
+    grid-row: 7;
+    grid-column: 2;
+    text-align: left;
+    padding: 0;
+    font-size: 2.0rem;
+}
+
+.lblQuoteTotal[b-k2mnb2ca90] {
+    grid-row: 7;
+    grid-column: 3;
+    text-align: right;
+    padding: 0;
+    font-size: 2.0rem;
+}
+
+.QuoteListDisplay[b-k2mnb2ca90] {
+    background-color: #797D7F;
+    float: right;
+    width: 45%;
+    box-shadow: 0 10px 20px silver;
+}
+/* _content/webMyStoreApp/Components/Pages/Login.razor.rz.scp.css */
+.LoginForm[b-qrx8bpjvwb] {
+    background-color: #797D7F;
+    align-content: center;
+    justify-content: center;
+    width: 400px;
+    height: 500px;
+    border-radius: 10px;
+    box-shadow: 10px 10px 20px #9C640C;
+    display:flex;
+    flex-direction:column;
+}
+
+.lblTitUser[b-qrx8bpjvwb] {
+    text-align: left;
+    color: white;
+    margin: 20px 30px 0px 30px;
+    margin-bottom: 0;
+    font-size: 1.3rem;
+}
+
+.inpUser[b-qrx8bpjvwb]{
+    margin: 0px 30px 20px 30px;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: lightgray;
+}
+
+.lblTitPassword[b-qrx8bpjvwb] {
+    text-align: left;
+    color: white;
+    margin: 20px 30px 0px 30px;
+    margin-bottom: 0;
+    font-size: 1.3rem;
+}
+
+.inpPassword[b-qrx8bpjvwb] {
+    margin: 0px 30px 20px 30px;
+    margin-top: 0;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: lightgray;
+}
+
+a[b-qrx8bpjvwb]{
+    color: darkblue;
+    margin: 0px 30px 0px 30px
+}
+
+.btnLogin[b-qrx8bpjvwb] {
+    color: White;
+    font-size: 1.5rem;
+    background-color: #9C640C;
+    border-radius: 5px;
+    border-color: #9C640C;
+    margin: 40px 60px 20px 60px;
+}

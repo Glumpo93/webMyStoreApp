@@ -1,0 +1,56 @@
+.LoginForm[b-qrx8bpjvwb] {
+    background-color: #797D7F;
+    align-content: center;
+    justify-content: center;
+    width: 400px;
+    height: 500px;
+    border-radius: 10px;
+    box-shadow: 10px 10px 20px #9C640C;
+    display:flex;
+    flex-direction:column;
+}
+
+.lblTitUser[b-qrx8bpjvwb] {
+    text-align: left;
+    color: white;
+    margin: 20px 30px 0px 30px;
+    margin-bottom: 0;
+    font-size: 1.3rem;
+}
+
+.inpUser[b-qrx8bpjvwb]{
+    margin: 0px 30px 20px 30px;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: lightgray;
+}
+
+.lblTitPassword[b-qrx8bpjvwb] {
+    text-align: left;
+    color: white;
+    margin: 20px 30px 0px 30px;
+    margin-bottom: 0;
+    font-size: 1.3rem;
+}
+
+.inpPassword[b-qrx8bpjvwb] {
+    margin: 0px 30px 20px 30px;
+    margin-top: 0;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: lightgray;
+}
+
+a[b-qrx8bpjvwb]{
+    color: darkblue;
+    margin: 0px 30px 0px 30px
+}
+
+.btnLogin[b-qrx8bpjvwb] {
+    color: White;
+    font-size: 1.5rem;
+    background-color: #9C640C;
+    border-radius: 5px;
+    border-color: #9C640C;
+    margin: 40px 60px 20px 60px;
+}

@@ -1,0 +1,47 @@
+﻿@page "/"
+@rendermode InteractiveServer
+@layout LoginLayout
+@using Microsoft.AspNetCore.Components.Authorization
+@inject UserAccountService userAccountService
+@inject AuthenticationStateProvider authStateProvider
+@inject NavigationManager navManager
+
+
+<div class="LoginForm">
+    <label class="lblTitUser"><b>Usuario:</b></label>
+    <input class="inpUser" placeholder="Nombre de Usuario" @bind="username"/>
+    <label class="lblTitPassword"><b>Contraseña:</b></label>
+    <input class="inpPassword" placeholder="Contraseña" @bind="password"/>
+    <a href="">¿Olvidó la contraseña?</a>
+    <a href="">Registrarse</a>
+    <button class="btnLogin" @onclick="Authenticate"><b>Iniciar Sesión</b></button>
+</div>
+
+@code {
+    private string username { get; set; } = "";
+    private string password { get; set; } = "";
+
+    public async Task Authenticate()
+    {
+        List<User> users = userAccountService.GetUsers();
+        var user = users.FirstOrDefault(users => users.UserName == username);
+        if (user == null || user.Password != password)
+        {
+            return;
+        }
+        else
+        {
+            var userCompanyAuthenticationStateProvider = (UserCompanyAuthenticationStateProvider)authStateProvider;
+                await userCompanyAuthenticationStateProvider.UpdateAutenticationState(new UserSession
+                {
+                    UserId = user.UserId,
+                    UserName = user.UserName,
+                    PhoneNumber = user.PhoneNumber,
+                    Email = user.Email
+                });
+            }
+            navManager.NavigateTo("/Home");
+            return;
+        }
+    }
+}

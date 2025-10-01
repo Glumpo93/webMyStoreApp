@@ -1,0 +1,228 @@
+﻿@page "/cotizaciones"
+@rendermode InteractiveServer
+
+<h1>Cotizaciones</h1>
+
+<br />
+
+<div class="accordion">
+    <div class="accordion-item">
+        <div class="accordion-header" @onclick="ToggleGeneralData"><b>Datos Generales</b></div>
+        @if (isGeneralDataOpen)
+        {
+           <div class="accordion-body">
+               <div class="accordion-lineQuoteData">
+                   <label class="lblQuote"><b>Cotización # </b></label>
+                   <input class="inp-QuoteNum" placeholder="000000" disabled="disabled" @bind="Quote.Number" />
+                   <div class="accordion-lineQuoteData">
+                        <label class="lblDateTimeQuote"><b>Fecha y Hora:</b></label>
+                       <input class="inpDateTimeQuote" placeholder="00/00/0000  00:00" @bind="Quote.DateTime"/>
+                   </div>
+               </div>
+               <br class="accordion-line"/>
+               <div class="accordion-line">
+                    <label><b>Nombre del Cliente: </b></label>
+                    <input @ref="inpCountryCode" class="inp-CostumerName" placeholder="Nombre del Cliente" disabled="disabled" @bind="Costumer.Name"/>
+                    <div class="accordion-line">
+                        <label><b>Teléfono:</b></label>
+                        <input class="inp-CountryCode" placeholder="Code" disabled="disabled" @bind="countryCode"/>
+                        <select @onchange="CountryCodeSelection" disabled="disabled">
+                            <option value="+506">Costa Rica (+506)</option>
+                            <option value="+52">México (+52)</option>
+                            <option value="+1">Estados Unidos (+1)</option>
+                        </select>
+                        <input class="inp-PhoneNumber"disabled="disabled" @bind="Costumer.PhoneNumber"/>
+                        <label><b>Correo:</b></label>
+                        <input class="inp-EmailAddress" disabled="disabled" @bind=Costumer.EmailAddress/>
+                    </div>
+                </div>
+                <div class="accordion-line btn-txt">
+                    <label><i><b>Mostrar datos confidenciales</b></i></label>
+                </div>
+            </div>
+        }
+    </div>
+    <br />
+    <div class="accordion-item">
+        <div class="accordion-header" @onclick="ToggleQuoteDetail"><b>Detalle de la cotización</b></div>
+            @if (isQuoteDataOpen)
+            {
+                <div class="accordion-body-quoteDetails">
+                    <div class="accordion-detailLine">
+                        @foreach (var Line in QuoteDetailLines)
+                        {
+                            <div class="detailLineProducts">
+                                <label class="lblNumQuoteLine" hidden="hidden">@Line.Id</label>
+                                <label class="lblItemQty">@Line.ItemQuantity</label>
+                                <label class="lblItemCode">@Line.ItemCode</label>
+                                <label class="lblItemName"><b>@Line.ItemName</b></label>
+                                <label class="lblUnitPrice">@FormatCurrency(Line.UnitPrice)</label>
+                                <label class="lblUnitDisc"><span>- @FormatCurrency(Line.ItemDiscount)</span></label>
+                                <label class="lblUnitSubTotal"><b>@FormatCurrency(Line.UnitPrice - Line.ItemDiscount)</b></label>
+                                <hr class="subtotalDivider" />
+                                <label class="lblUnitTotal"><b>@FormatCurrency(LineTotal(Line))</b></label>
+                                <label class="lblItemNotes"><i>@Line.ItemNotes</i></label>
+                                <label class="lblProductDetails"><i>[Detalles del producto importantes]</i></label>
+                            </div>
+                            <hr />
+                        }
+                    </div>
+                </div>
+            }
+    </div>
+    <br />
+    <div class="accordion-item">
+        <div class="accordion-header" @onclick="ToggleEndQuote"><b>Totales y observaciones</b></div>
+            @if (isQuoteEndOpen)
+            {
+                <div class="accordion-body-endQuote">
+                    <label class="lblTransportType">
+                        <span>
+                            <i>El tipo de transporte elegido es el @Quote.TransportType @GetTransportTypeName()</i>
+                        </span>
+                    </label>
+                    <label class="lblTitQuoteNotes"><b>Observaciones:</b></label>
+                    <label class="lblQuoteNotes">@Quote.Notes</label>
+                    <label class="lblTitQuoteSubotalTaxed">Gravado:</label>
+                    <label class="lblQuoteSubtotalTaxed">@FormatCurrency(Quote.SubtotalTaxed)</label>
+                    <label class="lblTitQuoteSubotalExcempted">Excento:</label>
+                    <label class="lblQuoteSubtotalExcempted">@FormatCurrency(Quote.SubtotalExcemption)</label>
+                    <label class="lblTitQuoteSubotalDiscount">Descuento:</label>
+                    <label class="lblQuoteSubtotalDiscount">
+                        <span>
+                            <b>-</b> @FormatCurrency(Quote.SubtotalDiscount)
+                        </span>
+                    </label>
+                    <label class="lblTitQuoteSubotalTransport">Transport:</label>
+                    <label class="lblQuoteSubtotalTransport">@FormatCurrency(Quote.TransportCharge)</label>
+                    <label class="lblTitQuoteSubotal"><b>Subtotal:</b></label>
+                    <label class="lblQuoteSubtotal"><b>@FormatCurrency(Quote.SubtotalTaxed + Quote.SubtotalExcemption - Quote.SubtotalDiscount + Quote.TransportCharge)</b></label>
+                    <label class="lblTitQuoteTaxes">Impuestos:</label>
+                    <label class="lblQuoteTaxes">@FormatCurrency(Quote.Taxes)</label>
+                    <label class="lblTitQuoteTotal"><b>Total:</b></label>
+                    <label class="lblQuoteTotal"><b>@FormatCurrency(Quote.Total)</b></label>
+                </div>
+            }
+    </div>
+</div>
+
+<div class="QuoteListDisplay">
+    <label>Lista de Cotizaciones</label>
+</div>
+
+@code {
+
+    private bool isGeneralDataOpen = false;
+    private bool isQuoteDataOpen = false;
+    private bool isQuoteEndOpen = false;
+    private string countryCode = "+506";
+    private ElementReference inpCountryCode;
+    private List<QuoteBillLine> QuoteDetailLines = new List<QuoteBillLine>();
+    private QuoteBillLine QuoteLine = new QuoteBillLine();
+    private QuoteBillInfo Quote = new QuoteBillInfo();
+    private Costumer Costumer = new Costumer();
+
+
+    private void ToggleGeneralData()
+    {
+        LoadQuoteData(1); /* Acá se carga el núm,ero de proforma para cargar datos */
+        GetCostumerData(Quote.CostumerCode);  
+        isGeneralDataOpen = !isGeneralDataOpen;
+        if (isQuoteDataOpen) { isQuoteDataOpen = !isQuoteDataOpen; }
+        if (isQuoteEndOpen) { isQuoteEndOpen = !isQuoteEndOpen; }
+    }
+    private void ToggleQuoteDetail()
+    {
+        LoadQuoteDetailLines();
+        isQuoteDataOpen = !isQuoteDataOpen;
+        if (isGeneralDataOpen) { isGeneralDataOpen = !isGeneralDataOpen; }
+        if (isQuoteEndOpen) { isQuoteEndOpen = !isQuoteEndOpen; }
+    }
+    private void ToggleEndQuote()
+    {
+        LoadQuoteDetailLines();
+        isQuoteEndOpen = !isQuoteEndOpen;
+        if (isGeneralDataOpen) { isGeneralDataOpen = !isGeneralDataOpen; }
+        if (isQuoteDataOpen) { isQuoteDataOpen = !isQuoteDataOpen; }
+    }
+    private void CountryCodeSelection(ChangeEventArgs e)
+    {
+        countryCode = e.Value.ToString();
+    }
+    private void LoadQuoteDetailLines()
+    {
+        {
+            QuoteDetailLines = new List<QuoteBillLine>();
+            QuoteLine = new QuoteBillLine
+                {
+                    Id = 0,
+                    ItemCode = "Codigo",
+                    ItemName = "Nombre del producto",
+                    ItemQuantity = 3,
+                    UnitPrice = 100,
+                    ItemDiscount = 0,
+                    ItemNotes = "Estas son las notas especiales del producto a considerar."
+                };
+            QuoteDetailLines.Add(QuoteLine);
+
+            QuoteLine = new QuoteBillLine
+                {
+                    Id = 1,
+                    ItemCode = "Sp3452",
+                    ItemName = "Prueba de producto",
+                    ItemQuantity = 6,
+                    UnitPrice = 400,
+                    ItemDiscount = 40,
+                    ItemNotes = "Es plateado con negro"
+                };
+            QuoteDetailLines.Add(QuoteLine);
+        }
+
+    }
+    private void GetCostumerData(int clientCode)
+    {
+        int startIndex;
+        int endIndex;
+        Costumer = new Costumer();
+        Costumer.Name = "Cliente de Prueba";
+        Costumer.PhoneNumber = "(+506)61944933";
+        startIndex = Costumer.PhoneNumber.IndexOf('(')+1;
+        endIndex = Costumer.PhoneNumber.IndexOf(')');
+        countryCode = Costumer.PhoneNumber.Substring(startIndex,endIndex-startIndex);
+        Costumer.PhoneNumber = Costumer.PhoneNumber.Substring(endIndex + 2);
+        Costumer.EmailAddress = "correo@prueba.com";
+    }
+    private void LoadQuoteData(int quoteNumber)
+    {
+        Quote = new QuoteBillInfo();
+        Quote.Number = quoteNumber;
+        Quote.DateTime = DateTime.Today;
+        Quote.CostumerCode = 1;
+        Quote.SubtotalTaxed = (decimal)2460;
+        Quote.SubtotalExcemption = (decimal)0;
+        Quote.SubtotalDiscount = (decimal)240;
+        Quote.TransportType = 01;
+        Quote.TransportCharge = (decimal)1500;
+        Quote.Taxes = (decimal)2665;
+        Quote.Total = (decimal)(2460 + 1500 + 2665);
+        Quote.Notes = "Estas son las notas de la cotización.";
+    }
+
+
+
+    private string FormatCurrency(decimal amount)
+    {
+        var cultureInfo = new System.Globalization.CultureInfo("es-CR");
+        return amount.ToString("C", cultureInfo);
+    }
+
+    private decimal LineTotal(QuoteBillLine line)
+    {
+        return (line.UnitPrice - line.ItemDiscount) * line.ItemQuantity;
+    }
+
+    private string GetTransportTypeName()
+    {
+        return "[Nombre del Transporte]";
+    }
+}

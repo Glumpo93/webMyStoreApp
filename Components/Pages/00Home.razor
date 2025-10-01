@@ -1,0 +1,41 @@
+﻿@page "/home"
+@using Microsoft.AspNetCore.Components.Authorization
+@using System.Security.Claims
+@inject AuthenticationStateProvider AuthStateProvider
+
+@if(_user != null)
+{
+    <h1>¡Buenvenido @_user.UserName!</h1>
+}
+else
+{
+   <h1>[]</h1>
+}
+
+
+@code {
+    private UserSession _user;
+    private bool _initialized;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        var userCompanyStateProvider = (UserCompanyAuthenticationStateProvider)AuthStateProvider;
+        var authState = await userCompanyStateProvider.GetActualAuthenticationStateAsync();
+        var user = authState.User;
+
+        if (user.Identity.IsAuthenticated)
+        {
+            _user = new UserSession
+                {
+                    UserId = int.Parse(user.FindFirst(ClaimTypes.NameIdentifier)?.Value),
+                    UserName = user.FindFirst(ClaimTypes.Name)?.Value,
+                    Email = user.FindFirst(ClaimTypes.Email)?.Value,
+                    PhoneNumber = user.FindFirst(ClaimTypes.MobilePhone)?.Value
+                };
+        }
+
+        _initialized = true;
+        StateHasChanged();
+    }
+
+}
